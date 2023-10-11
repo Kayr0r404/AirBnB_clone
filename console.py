@@ -8,6 +8,8 @@ from models.engine.file_storage import FileStorage
 
 class HBNBCommand(cmd.Cmd):
     """Inherits Cmd"""
+
+    # override the default prompt
     prompt = '(hbnb) '
 
     def do_quit(self, line) -> None:
@@ -21,7 +23,8 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self) -> None:
-        """Overrides emptyline in the super class so that
+        """
+        Overrides emptyline in the super class so that
         an empty line + ENTER shouldn’t execute anything
         """
         pass
@@ -43,7 +46,7 @@ class HBNBCommand(cmd.Cmd):
             if line in class_names:
                 instance = eval(line + '()')
                 instance.save()
-                # models.storage.save()
+
                 print(instance.id)
             else:
                 print("** class doesn't exist **")
@@ -59,8 +62,8 @@ class HBNBCommand(cmd.Cmd):
         """
         args_list = line.split()
         if len(args_list) == 2:
-            models.storage.reload()
-            obj = models.storage.all()
+            models.storage.reload() # get all data stored in a file
+            obj = models.storage.all() # get the dict of contents of the file invoked above
             key = args_list[0] + '.' + args_list[1]
             if key in obj:
                 print(obj.get(key))
@@ -82,7 +85,7 @@ class HBNBCommand(cmd.Cmd):
         if len(args_list) == 2:
             models.storage.reload()
             obj = models.storage.all()
-            key = args_list[0] + '.' + args_list[1]
+            key = f"{args_list[0]}'.'{args_list[1]}"
             if key in obj:
                 del obj[key]
                 models.storage.save()
@@ -116,32 +119,51 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, line) -> None:
         """
-        Updates an instance based on the class name and id by adding or
-        updating attribute (save the change into the JSON file).
+        Updates an instance based on the class name and id by adding or \
+            updating attribute (save the change into the JSON file).
+        Only one attribute can  be updated at the time
             Example:
                 $ update BaseModel 1234-1234-1234 email "aibnb@mail.com"
             Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         args_list = line.split()
+        if len(args_list) > 4:
+            del args_list[4:]
+        elif len(args_list) == 0:
+            print('** class name missing **')
+        else:
+            models.storage.reload()
+            obj = models.storage.all()
+
+
         match len(args_list):
-            case 4:
-                models.storage.reload()
-                obj = models.storage.all()
-                key = f"{args_list[0]}.{args_list[1]}"
-                if key in obj:
-                    instance = obj[key]
-                    setattr(instance, args_list[2], args_list[3])
-                    instance.save()
-                else:
-                    print('** no instance found **')
-            case 1:
-                print('** instance id missing **')
-            case 2:
-                print('')
             case 0:
+                
+            # case 1:
+            #     print('** instance id missing **')
+            case 2:
                 print('** attribute name missing **')
             case 3:
                 print('** value missing **')
+            case 4:
+
+                
+                for key in obj.keys():
+
+                    if not (args_list[0] in key):
+                        print('** class doesn\'t exist ** ')
+                    else:
+
+                        match len(args_list):
+                            case 4:
+                                key = f"{args_list[0]}.{args_list[1]}"
+                                if key in obj:
+                                    instance = obj[key]
+                                    setattr(instance, args_list[2], args_list[3])
+                                    instance.save()
+                                else:
+                                    print('** no instance found **')
+                
 
 
 if __name__ == '__main__':
