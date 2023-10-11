@@ -42,7 +42,8 @@ class HBNBCommand(cmd.Cmd):
         if line is not None and len(line) != 0:
             if line in class_names:
                 instance = eval(line + '()')
-                models.storage.save()
+                instance.save()
+                # models.storage.save()
                 print(instance.id)
             else:
                 print("** class doesn't exist **")
@@ -122,18 +123,25 @@ class HBNBCommand(cmd.Cmd):
             Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         args_list = line.split()
-        if len(args_list) == 4:
-            models.storage.reload()
-            obj = models.storage.all()
-            key = f"{args_list[0]}.{args_list[1]}"
-            if key in obj:
-                instance = obj[key]
-                setattr(instance, args_list[2], args_list[3])
-                models.storage.save()
-            else:
-                print('** no instance found **')
-        # elif len(args_list) == 1:
-        # elif len(args_list) 
+        match len(args_list):
+            case 4:
+                models.storage.reload()
+                obj = models.storage.all()
+                key = f"{args_list[0]}.{args_list[1]}"
+                if key in obj:
+                    instance = obj[key]
+                    setattr(instance, args_list[2], args_list[3])
+                    instance.save()
+                else:
+                    print('** no instance found **')
+            case 1:
+                print('** instance id missing **')
+            case 2:
+                print('')
+            case 0:
+                print('** attribute name missing **')
+            case 3:
+                print('** value missing **')
 
 
 if __name__ == '__main__':
