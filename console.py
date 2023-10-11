@@ -127,13 +127,24 @@ class HBNBCommand(cmd.Cmd):
             Usage: update <class name> <id> <attribute name> "<attribute value>"
         """
         args_list = line.split()
+        models.storage.reload()
+        obj = models.storage.all()
         if len(args_list) > 4:
             del args_list[4:]
-        elif len(args_list) == 0:
+
+        if len(args_list) == 0:
             print('** class name missing **')
+        elif len(args_list) > 1:
+            for class_name in obj.key():
+                if not (args_list[0] in class_name):
+                    print('** class doesn\'t exist ** ')
+                else:
+                    pass
         else:
-            models.storage.reload()
-            obj = models.storage.all()
+            for class_name in obj.key():
+                if not (args_list[0] in class_name):
+                    print('** class doesn\'t exist ** ')
+
 
 
         match len(args_list):
@@ -151,7 +162,7 @@ class HBNBCommand(cmd.Cmd):
                 for key in obj.keys():
 
                     if not (args_list[0] in key):
-                        print('** class doesn\'t exist ** ')
+                        
                     else:
 
                         match len(args_list):
