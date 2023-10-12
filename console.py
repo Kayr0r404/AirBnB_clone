@@ -129,52 +129,51 @@ class HBNBCommand(cmd.Cmd):
         args_list = line.split()
         models.storage.reload()
         obj = models.storage.all()
+        # store all the class names from the storage file in list
+        class_names = []
+        for i in obj.keys():
+            str = ""
+            for j in range(len(i)):
+                if i[j] != '.':
+                    str += i[j]
+                else:
+                    break
+            if not (str in class_names):
+                class_names.append(str)
+            str = ""
+
         if len(args_list) > 4:
             del args_list[4:]
 
-        if len(args_list) == 0:
-            print('** class name missing **')
-        elif len(args_list) > 1:
-            for class_name in obj.key():
-                if not (args_list[0] in class_name):
-                    print('** class doesn\'t exist ** ')
-                else:
-                    pass
-        else:
-            for class_name in obj.key():
-                if not (args_list[0] in class_name):
-                    print('** class doesn\'t exist ** ')
-
-
-
         match len(args_list):
             case 0:
-                
-            # case 1:
-            #     print('** instance id missing **')
+                print('** class name missing **')
+            case 1:
+                if not (args_list[0] in class_names):
+                    print('** class doesn\'t exist ** ')
+                else:
+                    print('** instance id missing **')
             case 2:
-                print('** attribute name missing **')
+                if not (args_list[0] in class_names):
+                    print('** class doesn\'t exist ** ')
+                else:
+                    print('** attribute name missing **')
             case 3:
-                print('** value missing **')
+                if not (args_list[0] in class_names):
+                    print('** class doesn\'t exist ** ')
+                else:
+                    print('** value missing **')
             case 4:
-
-                
-                for key in obj.keys():
-
-                    if not (args_list[0] in key):
-                        
+                if not (args_list[0] in class_names):
+                    print('** class doesn\'t exist ** ')
+                else:
+                    key = f"{args_list[0]}.{args_list[1]}"
+                    if key in obj:
+                        instance = obj[key]
+                        setattr(instance, args_list[2], args_list[3])
+                        instance.save()
                     else:
-
-                        match len(args_list):
-                            case 4:
-                                key = f"{args_list[0]}.{args_list[1]}"
-                                if key in obj:
-                                    instance = obj[key]
-                                    setattr(instance, args_list[2], args_list[3])
-                                    instance.save()
-                                else:
-                                    print('** no instance found **')
-                
+                        print('** no instance found **')
 
 
 if __name__ == '__main__':
