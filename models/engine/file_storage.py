@@ -3,6 +3,13 @@
 import json
 from models.base_model import BaseModel
 from models.user import User
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+from models.place import Place
 
 
 class FileStorage:
@@ -17,7 +24,7 @@ class FileStorage:
 
     def new(self, obj):
         """will push the obj to the objects"""
-        self.__objects[f"{obj.__class__.__name__}.{obj.id}"] = obj
+        self.__objects["{}.{}".format(obj.__class__.__name__, obj.id)] = obj
 
     def save(self):
         """serialize __objects to the JSON file (path: __file_path)"""
