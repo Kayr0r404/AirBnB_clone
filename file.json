@@ -1,0 +1,38 @@
+{
+    "BaseModel.d54cf46c-dca4-4d2b-964a-43906c9766b1": {
+        "id": "d54cf46c-dca4-4d2b-964a-43906c9766b1",
+        "created_at": "2023-10-13T06:30:42.839149",
+        "updated_at": "2023-10-13T06:30:42.839154",
+        "__class__": "BaseModel"
+    },
+    "User.f5607b46-4be6-4cad-9fd0-fee497a6e106": {
+        "id": "f5607b46-4be6-4cad-9fd0-fee497a6e106",
+        "created_at": "2023-10-13T06:30:42.839166",
+        "updated_at": "2023-10-13T06:30:42.839167",
+        "__class__": "User"
+    },
+    "Place.7ed5da30-2a90-4f9b-833b-604aa83db15b": {
+        "id": "7ed5da30-2a90-4f9b-833b-604aa83db15b",
+        "created_at": "2023-10-13T06:30:42.839177",
+        "updated_at": "2023-10-13T06:30:42.839178",
+        "__class__": "Place"
+    },
+    "BaseModel.49df27b4-5208-4be1-a42f-06300b795d9f": {
+        "id": "49df27b4-5208-4be1-a42f-06300b795d9f",
+        "created_at": "2023-10-13T06:30:42.839407",
+        "updated_at": "2023-10-13T06:30:42.839410",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.31b6cfb6-2f1b-49a6-bef7-c4927c456c1e": {
+        "id": "31b6cfb6-2f1b-49a6-bef7-c4927c456c1e",
+        "created_at": "2023-10-13T06:30:42.839533",
+        "updated_at": "2023-10-13T06:30:42.839534",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.b2b8eba5-5122-41a3-ad59-a2f43b9c0f77": {
+        "id": "b2b8eba5-5122-41a3-ad59-a2f43b9c0f77",
+        "created_at": "2023-10-13T06:30:42.840146",
+        "updated_at": "2023-10-13T06:30:42.840149",
+        "__class__": "BaseModel"
+    }
+}
