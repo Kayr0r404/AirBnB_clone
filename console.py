@@ -14,7 +14,7 @@ import re
 # from models.engine.file_storage import FileStorage
 
 
-class_list = {
+class_dict = {
             'BaseModel': BaseModel,
             'City': City,
             'Place': Place,
@@ -60,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
                 $ create BaseModel
         """
         if line is not None and len(line) != 0:
-            if line in class_list:
+            if line in class_dict:
                 instance = eval(line + '()')
                 instance.save()
                 print(instance.id)
@@ -82,7 +82,7 @@ class HBNBCommand(cmd.Cmd):
         """
         args_list = line.split()
         if len(args_list) == 2:
-            if args_list[0] in class_list:
+            if args_list[0] in class_dict:
                 key = args_list[0] + '.' + args_list[1]
                 if key in obj:
                     print(obj.get(key))
@@ -107,7 +107,7 @@ class HBNBCommand(cmd.Cmd):
         args_list = line.split()
         if len(args_list) == 2:
             key = "{}.{}".format(args_list[0], args_list[1])
-            if args_list[0] in class_list:
+            if args_list[0] in class_dict:
                 if key in obj:
                     del obj[key]
                     models.storage.save()
@@ -132,7 +132,7 @@ class HBNBCommand(cmd.Cmd):
             list = [str(obj.get(key)) for key in obj.keys()]
             if len(list) != 0:
                 print(list)
-        elif line in class_list:
+        elif line in class_dict:
             list = [str(obj.get(key)) for key in obj.keys() if line in key]
             if len(list) != 0:
                 print(list)
@@ -158,22 +158,22 @@ class HBNBCommand(cmd.Cmd):
         if len(args_list) == 0:
             print('** class name missing **')
         elif len(args_list) == 1:
-            if args_list[0] not in class_list:
+            if args_list[0] not in class_dict:
                 print('** class doesn\'t exist ** ')
             else:
                 print('** instance id missing **')
         elif len(args_list) == 2:
-            if args_list[0] not in class_list:
+            if args_list[0] not in class_dict:
                 print('** class doesn\'t exist ** ')
             else:
                 print('** attribute name missing **')
         elif len(args_list) == 3:
-            if args_list[0] not in class_list:
+            if args_list[0] not in class_dict:
                 print('** class doesn\'t exist ** ')
             else:
                 print('** value missing **')
         elif len(args_list) == 4:
-            if args_list[0] not in class_list:
+            if args_list[0] not in class_dict:
                 print('** class doesn\'t exist ** ')
             else:
                 key = "{}.{}".format(args_list[0], args_list[1])
@@ -195,7 +195,7 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:
             list = [str(obj.get(key)) for key in obj.keys()]
             print(len(list))
-        elif line in class_list:
+        elif line in class_dict:
             list = [str(obj.get(key)) for key in obj.keys() if line in key]
             print(len(list))
         else:
@@ -211,7 +211,7 @@ class HBNBCommand(cmd.Cmd):
         class_name, _, fun = line.partition('.')
         command, _, param = fun.partition('(')
 
-        if class_name in class_list and param.endswith(')'):
+        if class_name in class_dict and param.endswith(')'):
             if command == 'all':
                 self.do_all(class_name)
             elif command == 'count':
