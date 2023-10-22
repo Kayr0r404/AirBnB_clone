@@ -10,6 +10,7 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models.place import Place
+import re
 # from models.engine.file_storage import FileStorage
 
 
