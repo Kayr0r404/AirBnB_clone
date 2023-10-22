@@ -2,8 +2,8 @@
     height: 70px;
     max-width: 1000px;
     display: flex;
-    /* align-items: center; */
-    justify-content: center;
+    flex-direction: column;
+    /* justify-content: center; */
     /* position: relative; */
     margin: 30px auto 30px auto;
     /* background-color: black; */
