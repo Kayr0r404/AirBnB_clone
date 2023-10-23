@@ -1,5 +1,4 @@
 .places {
-    font-size: 30px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -25,10 +24,6 @@
     text-align: center;
 }
 
-article:first-child {
-    align-self: flex-end;
-}
-
 .price_by_night {
     color: #FF5A5F;
     border: #FF5A5F solid 4px;
@@ -48,9 +43,7 @@ article:first-child {
     border-bottom: #dddddd solid 1px;
     height: 80px;
     display: flex;
-    /* align-items: flex-end; */
     justify-content: space-around;
-    font-size: 20px;
 }
 
 .information .max_guest {
@@ -61,7 +54,6 @@ article:first-child {
     width: 100px;
     align-items: flex-end;
     display: flex;
-
 }
 .information .number_rooms {
     background-image: url('../images/icon_bed.png');

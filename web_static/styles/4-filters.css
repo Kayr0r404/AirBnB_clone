@@ -14,8 +14,8 @@
     height: 48px;
     border: none;
     border-radius: 4px;
-    position: absolute;
     width: 20%;
+    position: absolute;
     right: 30px;
     top: 50%;
     -ms-transform: translateY(-50%);
