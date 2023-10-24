@@ -84,18 +84,37 @@
 
 .places .amenities {
     margin-top: 40px;
-    background-color: azure;
-    text-align: start;
 }
- .amenities h2, .review h2 {
+.amenities h2, .review h2 {
+    text-align: start;
     font-size: 16px;
     border-top: #DDDDDD 1px solid;
 }
 
 .places .review {
-    background-color: antiquewhite;
     margin-top: 40px;
 }
-.review h2{
-    text-align: start;
+.amenities ul, .review ul {
+    padding-left: 0;
+}
+.amenities ul li{
+    list-style: none;
+    background-repeat: no-repeat;
+    background-position: left 0; /* Position the image at the left edge */
+    padding-left: 20px; /* Adjust the spacing between the image and text */
+    margin-bottom: 10px; /* Add some margin to separate list items */
+    background-size: 16px 16px; /* Adjust the size of the background image */
+}
+
+.amenities li:first-child {
+    background-image: url('../images/icon_tv.png');
+}
+
+.amenities li:nth-child(2) {
+    background-image: url('../images/icon_wifi.png');
+    
+}
+
+.amenities li:nth-child(3) {
+    background-image: url('../images/icon_group.png');
 }
