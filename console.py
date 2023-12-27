@@ -163,17 +163,17 @@ class HBNBCommand(cmd.Cmd):
                 print('** instance id missing **')
         elif len(args_list) == 2:
             if args_list[0] not in class_dict:
-                print('** class doesn\'t exist ** ')
+                print('** class doesn\'t exist **')
             else:
                 print('** attribute name missing **')
         elif len(args_list) == 3:
             if args_list[0] not in class_dict:
-                print('** class doesn\'t exist ** ')
+                print('** class doesn\'t exist **')
             else:
                 print('** value missing **')
         elif len(args_list) == 4:
             if args_list[0] not in class_dict:
-                print('** class doesn\'t exist ** ')
+                print('** class doesn\'t exist **')
             else:
                 key = "{}.{}".format(args_list[0], args_list[1])
                 if key in obj:
