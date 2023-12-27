@@ -3,6 +3,7 @@
 
 from uuid import uuid4 as id4
 from datetime import datetime as dt
+import models
 
 class BaseModel:
     """the BaseModel class"""

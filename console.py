@@ -2,7 +2,7 @@
 '''interprete commands'''
 import cmd
 import re
-import models
+from models.__init__ import storage
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -10,7 +10,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.review import Review
 from models.place import Place
-import re
 # from models.engine.file_storage import FileStorage
 
 
@@ -24,9 +23,9 @@ class_dict = {
             'Amenity': Amenity
             }
 # get all data stored in a file
-models.storage.reload()
+storage.reload()
 # get the dict of contents of the file invoked above
-obj = models.storage.all()
+obj = storage.all()
 
 
 class HBNBCommand(cmd.Cmd):
@@ -110,7 +109,7 @@ class HBNBCommand(cmd.Cmd):
             if args_list[0] in class_dict:
                 if key in obj:
                     del obj[key]
-                    models.storage.save()
+                    storage.save()
                 else:
                     print('** no instance found **')
             else:
